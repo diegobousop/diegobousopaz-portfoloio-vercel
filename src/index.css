@@ -1,0 +1,28 @@
+/* Animación suave arriba-abajo para guy.png */
+.animate-guy-bounce {
+  animation: guy-bounce 3s ease-in-out infinite;
+}
+
+@keyframes guy-bounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-40px); }
+  100% { transform: translateY(0); }
+}
+/* Fuentes personalizadas */
+/* Fin fuentes personalizadas */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* Carrusel animaciones fade */
+.carousel-fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.carousel-fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
