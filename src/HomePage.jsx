@@ -13,7 +13,7 @@ const HomePage = () => {
   return (
     <main className="min-h-screen bg-[#0E111E] bg-no-repeat bg-top bg-cover"> 
       <Header activeSection={activeSection} setActiveSection={setActiveSection} /> 
-      <div className="z-10 relative  md:px-12  xl:px-72">
+      <div className="z-10 relative  md:px-12  xl:px-72 justify-center items-center flex flex-col">
         
         <Hero />
         <Introduction />

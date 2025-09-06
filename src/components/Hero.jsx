@@ -44,7 +44,7 @@ const Hero = () => {
   }, [toast.show]);
 
   return (
-  <main className="flex  flex-col lg:flex-row items-center justify-center mt-20 mb-52 ">
+  <main className="flex  flex-col lg:flex-row items-center justify-center mt-20 mb-12 lg:mb-52 ">
       {/* Toast */}
       {toast.show && (
         <div className={`fixed top-6 left-1/2 -translate-x-1/2 px-6 py-3 rounded-full shadow-lg z-50 text-white font-semibold transition bg-gradient-to-r ${toast.type === 'success' ? 'from-green-400 to-green-600' : 'from-red-400 to-red-600'}`}>
@@ -54,9 +54,10 @@ const Hero = () => {
 
       <div className="text-center justify-center inline-block px-8 py-6 rounded-xl"
       >
-        <h1 className="mt-8 text-6xl font-bold text-gray-400">Diego Bouso Paz</h1>
+        <h1 className="mt-8 text-4xl lg:text-6xl font-bold text-gray-400">Diego Bouso Paz</h1>
+
         <h1 
-          className="text-4xl leading-relaxed font-bold mt-5 bg-gradient-to-r from-yellow-200 to-yellow-500 bg-clip-text text-transparent "
+          className="text-3xl lg:text-4xl leading-relaxed font-bold mt-5 bg-gradient-to-r from-yellow-200 to-yellow-500 bg-clip-text text-transparent "
           style={{
             WebkitBackgroundClip: 'text',
             backgroundClip: 'text',
@@ -66,7 +67,7 @@ const Hero = () => {
         >
           Ingeniero de Software
         </h1>
-        <h1 className="text-xl font-light text-gray-300 mt-5">Siempre aprendiendo sobre nuevas tecnologías para aplicar la solución adecuada en el momento adecuado.</h1>
+        <h1 className="text-m lg:text-xl font-light text-gray-300 mt-5">Siempre aprendiendo sobre nuevas tecnologías para aplicar la solución adecuada en el momento adecuado.</h1>
 
         
             

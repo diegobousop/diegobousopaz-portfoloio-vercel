@@ -5,7 +5,7 @@ import TecnologiaCard from './TecnologiaCard'
 
 const StackTechnologico = () => {
   return (
-    <div className='mb-40'>
+    <div className='mb-40 max-w-[80%] lg:max-w-[100%] w-full'>
         <h2 className="text-4xl font-bold text-gray-400 text-center mt-20 mb-14">Stack</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full w-full mx-auto mt-8">

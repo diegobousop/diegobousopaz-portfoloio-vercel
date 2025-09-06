@@ -13,7 +13,7 @@ const Contact = () => {
   const [activeSection, setActiveSection] = useState("Contact")
   return (
     <main className="min-h-screen bg-[#0E111E] bg-no-repeat bg-top bg-cover"> 
-      <div className="z-10 relative">
+      <div className="z-10 relative ">
         <Header activeSection={activeSection} setActiveSection={setActiveSection} /> 
         <ContactContent />
         <Footer />

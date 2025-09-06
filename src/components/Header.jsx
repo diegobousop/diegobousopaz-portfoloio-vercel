@@ -39,7 +39,7 @@ const Header = ({ activeSection = "Inicio", setActiveSection }) => {
 
   {/* Nombre solo visible en móvil al hacer scroll, absolutamente centrado */}
   <span className={`md:hidden transition-opacity duration-300 font-bold text-l text-gray-400 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${showName ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>Diego Bouso Paz</span>
-  <a className="p-2 text-gray-400 hidden md:inline">Portfolio</a>
+  <a className="p-2 text-gray-400 font-bold hidden md:inline">Portafolio</a>
 
 
         <nav className="flex space-x-6 hidden md:flex items-center">

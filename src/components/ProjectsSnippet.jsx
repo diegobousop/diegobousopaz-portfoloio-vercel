@@ -4,7 +4,7 @@ import TecnologiaCard from './TecnologiaCard'
 
 const ProjectsSnippet = () => {
   return (
-    <div className='w-full'>
+    <div className='w-full max-w-[80%] lg:max-w-[100%]'>
         <h2 className="text-4xl font-bold text-gray-400 text-center mt-20 mb-14">Proyectos</h2>
         
 

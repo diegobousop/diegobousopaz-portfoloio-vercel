@@ -7,7 +7,7 @@ const Introduction = () => {
 
 
 
-    <div className='flex flex-row justify-center items-center mb-14'>
+    <div className='flex flex-col lg:flex-row justify-center items-center mb-14'>
 
       <div className="mb-14">
 
@@ -19,7 +19,7 @@ const Introduction = () => {
 
 
 
-      <div className=" max-w-[60%]">
+      <div className="max-w-[80%] lg:max-w-[60%]">
         <div className="flex flex-row justify-center mb-6 ">
                 <SocialNetworkIcon icon="/icons/linkedin.png" link="https://www.linkedin.com/in/diego-bouso-paz-248491289/" />
                 <SocialNetworkIcon icon="/icons/github.png" link="https://github.com/diegobousop/" />
