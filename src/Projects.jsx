@@ -6,6 +6,7 @@ import StackTechnologico from "./components/StackTechnologico"
 import Introduction from "./components/Introduction"
 import Project from "./components/Projects/Project"
 import ProjectBeachAndVoley from "./components/Projects/ProjectBeachAndVoley"
+import ProjectGymTonic from "./components/Projects/GymTonic"
 
 import { useState } from "react"
 import ProjectFantasyRift from "./components/Projects/ProjectFantasyRift"
@@ -19,6 +20,7 @@ const Projects = () => {
         <Project />
         <ProjectFantasyRift />
         <ProjectBeachAndVoley />
+        <ProjectGymTonic />
         <Footer />
       </div>
     </main>

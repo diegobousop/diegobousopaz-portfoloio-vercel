@@ -52,6 +52,22 @@ const ProjectsSnippet = () => {
                 </div>
             </div>
           </a>
+
+
+          <a href="projects" className="block group">
+            <div className="bg-gradient-to-t from-transparent via-transparent to-transparent rounded-2xl border border-gray-700 hover:border-yellow-600 transition-colors duration-300 flex flex-col items-center justify-start h-full">
+                <img src="/icons/gymtonic.png" alt="Fantasy Rift" className="w-full h-auto rounded-2xl border border-gray-700 shadow-lg" />
+                <div className='p-6 pb-0'>
+                  <div className='flex flex-row justify-center items-center'>
+                      <h2 className="text-3xl text-yellow-500 text-center first-line:font-bold mb-2">Gym Tonic</h2>
+                      <img src="/icons/goto.png" alt="League of Legends" className="w-6 h-6 inline-block mb-1 ml-4" />
+                  </div>
+                  
+                  <h2 className="text-l text-gray-400 text-center font-bold mb-4">Proyecto en solitario - Diseño</h2>
+                  <p className="text-gray-300 text-left mb-10">Mockup web de una aplicación para el entrenamiento físico y seguimiento de rutinas de ejercicio.</p>
+                </div>
+            </div>
+          </a>
         
         
         </div>
