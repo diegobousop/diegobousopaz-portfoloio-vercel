@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const TecnologiaCard = ({ nombre, icono, shadowColor = '#fbbf24' }) => {
+const TecnologiaCard = ({ nombre, icono, shadowColor = '#FE4F51' }) => {
   return (
     <div className="flex flex-col items-center group">
       <img

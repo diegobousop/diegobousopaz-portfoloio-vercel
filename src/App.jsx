@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./HomePage";
 import Contact from "./Contact";
 import Projects from "./Projects";
+import DigitalBrain from "./DigitalBrain";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/projects",
     element: <Projects />, 
+  },
+  {
+    path: "/digital-brain",
+    element: <DigitalBrain />, 
   },
 ]);
 

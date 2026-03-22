@@ -13,7 +13,7 @@ const Project = () => {
   const nextImage = () => setCurrent((current + 1) % images.length)
 
   return (
-    <div className="bg-gradient-to-t from-transparent via-transparent to-transparent rounded-2xl border border-gray-700 shadow-lg max-w-3xl mx-auto mt-16 p-8 flex flex-col items-center">
+    <div id="bigchef" className="bg-gradient-to-t from-transparent via-transparent to-transparent rounded-2xl border border-gray-700 shadow-lg max-w-3xl mx-auto mt-16 p-8 flex flex-col items-center">
       <div className="relative w-full h-auto flex items-center justify-center mb-8">
         <img src={images[current]} alt="Big Chef" className="w-full h-full object-cover rounded-2xl border border-gray-700 shadow-lg transition-all duration-500" />
         

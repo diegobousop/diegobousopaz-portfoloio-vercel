@@ -62,7 +62,7 @@ const Hero = () => {
             WebkitBackgroundClip: 'text',
             backgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
-            backgroundImage: 'linear-gradient(90deg, yellow-800 0%, #D49100 70%)'
+            backgroundImage: 'linear-gradient(90deg, #FE4F51 0%, #FF7043 70%)'
           }}
         >
           Ingeniero de Software
@@ -75,8 +75,6 @@ const Hero = () => {
       
       
       </div>
-        <div className="h-0 w-[40rem] absolute top-[6.5%] right-[30%] shadow-[0_0_700px_40px_#81339F] -z-10">
-        </div>
 
 
      

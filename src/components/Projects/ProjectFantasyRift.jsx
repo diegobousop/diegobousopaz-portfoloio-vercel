@@ -2,12 +2,15 @@ import React from 'react'
 
 const ProjectFantasyRift = () => {
   return (
-    <div className="bg-gradient-to-t from-transparent via-transparent to-transparent rounded-2xl border border-gray-700 shadow-lg max-w-3xl mx-auto mt-16 p-8 flex flex-col items-center">
+    <div id="fantasyrift" className="bg-gradient-to-t from-transparent via-transparent to-transparent rounded-2xl border border-gray-700 shadow-lg max-w-3xl mx-auto mt-16 p-8 flex flex-col items-center">
       <img src="/icons/fantasyrift-banner.png" alt="Fantasy Rift" className="w-full h-auto rounded-2xl border border-gray-700 shadow-lg mb-8" />
       <h2 className="text-4xl text-yellow-500 font-bold text-left w-full mb-4">Fantasy Rift</h2>
       <h3 className="text-xl text-gray-400 font-bold text-left w-full mb-6">Proyecto en grupo de 6 en Universidad - React y Spring Boot</h3>
       <p className="text-gray-300 text-left w-full mb-10">
-        Juego hecho en una aplicación web que lleva las ligas fantasy al mundo de los eSports. Cada usuario puede crear su propia liga e invitar a sus amigos para vivir la experiencia de tener su propio equipo profesional. Incluye gestión de equipos, ligas privadas, estadísticas en tiempo real y sistema de puntuación basado en el rendimiento de jugadores reales.
+        Juego de liga Fantasy de League of Legends. Cada usuario puede crear su propia liga de eSports
+         e invitar a sus amigos para vivir la experiencia de tener su propio equipo profesional.
+          Incluye gestión de equipos, ligas privadas, estadísticas en tiempo real y sistema de puntuación
+           basado en el rendimiento de jugadores reales.
       </p>
       <p className="text-gray-300 text-left w-full mb-10">
         Proyecto de finales de carrera, desarrollado en 4 meses por un equipo de 6 personas. Mi rol fue el desarrollo en backend mayoritariamente.

@@ -14,6 +14,339 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+  background: #000;
+  height: 100%;
+}
+
+/* Solo ocultar overflow en la página principal con grafo */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* ==================== LANDING / GRAPH STYLES ==================== */
+
+/* Root containers */
+.landing-root {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  cursor: pointer;
+  z-index: 50;
+}
+
+.graph-root {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 50;
+}
+
+/* Landing overlay — contenedor fijo scrollable */
+.landing-overlay-container {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Sección hero del landing */
+.landing-overlay {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.25) 100%);
+  transition: opacity 0.15s ease-out;
+  will-change: opacity;
+}
+
+.landing-overlay-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 4rem;
+}
+
+/* Header wrapper for landing/graph modes */
+.landing-header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+}
+
+/* Spacer — empuja el portfolio debajo del fold */
+.landing-spacer {
+  height: 100vh;
+  pointer-events: none;
+}
+
+/* Portfolio content — semi-transparente para ver el grafo detrás */
+.portfolio-content {
+  position: relative;
+  z-index: 20;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.landing-overlay-content {
+  text-align: center;
+  max-width: 600px;
+  padding: 2rem;
+  cursor: default;
+  animation: contentSlideUp 1.2s ease-out;
+}
+
+@keyframes contentSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.landing-name {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #9ca3af;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+@media (min-width: 768px) {
+  .landing-name {
+    font-size: 2.5rem;
+  }
+}
+
+.landing-title {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  text-transform: lowercase;
+  color: #FE4F51;
+}
+
+@media (min-width: 768px) {
+  .landing-title {
+    font-size: 2.2rem;
+  }
+}
+
+.landing-subtitle {
+  font-size: 1rem;
+  color: #d1d5db;
+  margin-top: 1rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* Explore button */
+/* Buttons container */
+.landing-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 2.5rem;
+}
+
+/* Portfolio button - primary */
+.landing-portfolio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.landing-portfolio-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.08);
+}
+
+/* Explore button - secondary */
+.landing-explore-btn {
+  --theme-color: #FE4F51;
+  margin-top: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  border: 1px solid color-mix(in srgb, var(--theme-color) 40%, transparent);
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--theme-color) 8%, transparent);
+  color: var(--theme-color);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.landing-explore-btn:hover {
+  background: color-mix(in srgb, var(--theme-color) 18%, transparent);
+  border-color: color-mix(in srgb, var(--theme-color) 70%, transparent);
+  transform: scale(1.05);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--theme-color) 15%, transparent);
+}
+
+.landing-explore-btn-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.landing-explore-btn:hover .landing-explore-btn-icon {
+  transform: translate(3px, -3px);
+}
+
+.landing-hint {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.25);
+  font-style: italic;
+}
+
+/* Scroll indicator */
+.landing-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+.landing-scroll-indicator:hover {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.landing-scroll-arrow {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* Graph mode controls */
+.graph-controls {
+  position: fixed;
+  top: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 70;
+  animation: controlsFadeIn 0.5s ease-out;
+}
+
+@keyframes controlsFadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.graph-btn {
+  padding: 0.6rem 1.4rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.graph-btn-back {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.graph-btn-back:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.graph-btn-portfolio {
+  background: rgba(254, 79, 81, 0.1);
+  color: #FE4F51;
+  border-color: rgba(254, 79, 81, 0.35);
+}
+
+.graph-btn-portfolio:hover {
+  background: rgba(254, 79, 81, 0.2);
+  border-color: rgba(254, 79, 81, 0.65);
+  box-shadow: 0 0 20px rgba(254, 79, 81, 0.12);
+}
+
+/* Floating button on portfolio page */
+.graph-floating-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 40;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(254, 79, 81, 0.2);
+  border: 1px solid rgba(254, 79, 81, 0.35);
+  color: #FE4F51;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.graph-floating-btn:hover {
+  background: rgba(254, 79, 81, 0.25);
+  border-color: rgba(254, 79, 81, 0.65);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(254, 79, 81, 0.18);
+}
+
 
 
 /* Carrusel animaciones fade */
@@ -26,3 +359,105 @@
   transition: opacity 0.5s ease;
 }
 
+/* PopUpItem: hidden by default, quick reveal on hover/focus (no bounce) */
+.popup-item {
+  opacity: 0;
+  transform: scale(0.92) rotate(var(--popup-rot, 0deg));
+  transition: transform 120ms ease-out, opacity 120ms ease-out;
+  will-change: transform, opacity;
+}
+.popup-item:hover,
+.popup-item:focus {
+  opacity: 1;
+  transform: scale(1.04) rotate(var(--popup-rot, 0deg));
+}
+
+/* Selected parent panel (listing parent and children) */
+.selected-panel {
+  max-width: 960px;
+  backdrop-filter: blur(4px);
+}
+.selected-panel img {
+  display: block;
+}
+
+/* GymTonic carousel styles */
+.gym-carousel .carousel-viewport {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  aspect-ratio: 16 / 9; /* ensure viewport matches 16:9 captures */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Ecos do Sur: taller carousel viewport */
+.ecos-carousel-viewport {
+  aspect-ratio: unset; /* use explicit height instead */
+  height: 560px; /* substantially taller on desktop */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-track {
+  display: flex;
+  will-change: transform;
+}
+.carousel-slide {
+  padding: 1rem !important; /* reduce tailwind p-6 spacing */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-slide img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
+  object-fit: contain; /* show full image with letterboxing if needed */
+  border-radius: 12px;
+}
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.carousel-nav.left-3 { left: 12px }
+.carousel-nav.right-3 { right: 12px }
+.carousel-nav:hover { transform: translateY(-50%) scale(1.05) }
+.carousel-dots button { border: none; cursor: pointer }
+
+@media (max-width: 640px) {
+  .gym-carousel .carousel-viewport { aspect-ratio: 16/9 }
+  .carousel-slide img { height: 100%; width: auto; max-width: 100% }
+  .carousel-nav { width: 34px; height: 34px; font-size: 1.2rem }
+}
+
+@media (max-width: 1024px) {
+  /* reduce Ecos carousel height on tablets */
+  .ecos-carousel-viewport { height: 420px }
+}
+
+@media (max-width: 640px) {
+  .ecos-carousel-viewport { height: 260px }
+}
+
+/* Image modal / lightbox */
+.image-modal {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.image-modal-inner { position: relative }
+.image-modal img { border-radius: 10px }
+.image-modal button[aria-label="Cerrar"] { backdrop-filter: blur(6px) }

@@ -93,6 +93,15 @@ const StackTechnologico = () => {
                 <div className="flex items-center justify-center h-16 mb-16">
                     <TecnologiaCard nombre="Photoshop" icono="/icons/photoshop.png" shadowColor='#29A0B1' />
                 </div>
+                <div className="flex items-center justify-center h-16 mb-16">
+                    <TecnologiaCard nombre="Jenkins" icono="/icons/jenkins.png" shadowColor='#D33833' />
+                </div>
+                <div className="flex items-center justify-center h-16 mb-16">
+                    <TecnologiaCard nombre="Redmine" icono="/icons/redmine.png" shadowColor='#B32024' />
+                </div>
+                <div className="flex items-center justify-center h-16 mb-16">
+                    <TecnologiaCard nombre="Taiga" icono="/icons/taiga.png" shadowColor='#67C0A4' />
+                </div>
             {/* ...más tecnologías... */}
             </div>
         </div>

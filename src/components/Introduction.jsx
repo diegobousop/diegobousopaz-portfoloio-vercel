@@ -11,7 +11,6 @@ const Introduction = () => {
 
       <div className="mb-14">
 
-      <img style={{ height: "110%", width: "160%" }} src="/icons/guy.png" alt="Diego Bouso Paz" className="animate-guy-bounce" />
 
 
       </div>

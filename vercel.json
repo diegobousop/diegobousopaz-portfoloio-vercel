@@ -1,5 +1,9 @@
 {
     "rewrites": [
+        {
+            "source": "/brain/:path*",
+            "destination": "/brain/:path*"
+        },
         { 
             "source": "/(.*)",
             "destination": "/" 

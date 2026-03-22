@@ -6,15 +6,21 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && npm run build:brain",
+    "build:brain": "cd digital-brain-app && npm install && npm run build && xcopy dist ..\\dist\\brain /E /I /Y || cp -r dist ../dist/brain",
     "lint": "eslint .",
     "preview": "vite preview",
-    "host" : "vite --host"
+    "host": "vite --host"
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "echarts": "^5.6.0",
+    "echarts-gl": "^2.0.9",
+    "i18next": "^25.5.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-hot-toast": "^2.6.0",
+    "react-i18next": "^15.7.3",
     "react-router-dom": "^7.8.2"
   },
   "devDependencies": {
