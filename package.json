@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npm run build:brain",
-    "build:brain": "cd digital-brain-app && npm install && npm run build && xcopy dist ..\\dist\\brain /E /I /Y || cp -r dist ../dist/brain",
+    "build": "vite build",
+    "build:brain": "if [ -d digital-brain-app ]; then cd digital-brain-app && npm install && npm run build && cp -r dist ../dist/brain; else echo \"no digital-brain-app, skipping build:brain\"; fi",
     "lint": "eslint .",
     "preview": "vite preview",
     "host": "vite --host"
