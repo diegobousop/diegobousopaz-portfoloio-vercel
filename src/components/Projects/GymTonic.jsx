@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react'
-import gsap from 'gsap'
 
 const GymTonic = () => {
 	const slides = ['/gt-01.png', '/gt-02.png', '/gt-03.png']
@@ -10,11 +9,17 @@ const GymTonic = () => {
 
 	useEffect(() => {
 		if (!trackRef.current) return
-		gsap.to(trackRef.current, {
-			xPercent: -index * 100,
-			duration: 0.8,
-			ease: 'power3.out',
-		})
+		let mounted = true
+		import('gsap').then((module) => {
+			if (!mounted) return
+			const gsap = module.default || module
+			gsap.to(trackRef.current, {
+				xPercent: -index * 100,
+				duration: 0.8,
+				ease: 'power3.out',
+			})
+		}).catch(() => {})
+		return () => { mounted = false }
 	}, [index])
 
 	useEffect(() => {
@@ -36,17 +41,23 @@ const GymTonic = () => {
 		// animate in after render
 		requestAnimationFrame(() => {
 			if (modalRef.current && modalImgRef.current) {
-				gsap.killTweensOf([modalRef.current, modalImgRef.current])
-				gsap.fromTo(modalRef.current, { opacity: 0 }, { opacity: 1, duration: 0.25 })
-				gsap.fromTo(modalImgRef.current, { scale: 0.95, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: 'power3.out' })
+				import('gsap').then((module) => {
+					const gsap = module.default || module
+					gsap.killTweensOf([modalRef.current, modalImgRef.current])
+					gsap.fromTo(modalRef.current, { opacity: 0 }, { opacity: 1, duration: 0.25 })
+					gsap.fromTo(modalImgRef.current, { scale: 0.95, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: 'power3.out' })
+				}).catch(() => {})
 			}
 		})
 	}
 
 	const closeModal = () => {
 		if (modalRef.current && modalImgRef.current) {
-			gsap.to(modalImgRef.current, { scale: 0.96, opacity: 0, duration: 0.2 })
-			gsap.to(modalRef.current, { opacity: 0, duration: 0.22, onComplete: () => setModalSrc(null) })
+			import('gsap').then((module) => {
+				const gsap = module.default || module
+				gsap.to(modalImgRef.current, { scale: 0.96, opacity: 0, duration: 0.2 })
+				gsap.to(modalRef.current, { opacity: 0, duration: 0.22, onComplete: () => setModalSrc(null) })
+			}).catch(() => setModalSrc(null))
 		} else {
 			setModalSrc(null)
 		}
