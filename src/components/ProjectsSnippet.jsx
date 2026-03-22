@@ -29,7 +29,7 @@ const ProjectsSnippet = () => {
 
           <a href="projects" className="block group">
             <div className="bg-gradient-to-t from-transparent via-transparent to-transparent rounded-2xl border border-gray-700 hover:border-yellow-600 transition-colors duration-300 flex flex-col items-center justify-start h-full">
-                <img src="/icons/digitalbrain.png" alt="Digital Brain" className="p-2 my-5 w-[50%] h-auto rounded-2xl  shadow-lg" />
+                <img src="/icons/digitalbrain.png" alt="Digital Brain" className="p-10 my-5 w-[50%] h-auto rounded-2xl  shadow-lg" />
                 <div className='p-6 pb-0 bg-[rgb(22,24,36)] rounded-2xl border border-gray-700'>
                   <div className='flex flex-row justify-center items-center'>
                       <h2 className="text-3xl text-yellow-500 text-center first-line:font-bold mb-2">Digital Brain</h2>
