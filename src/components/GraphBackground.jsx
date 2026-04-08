@@ -132,12 +132,33 @@ const GraphBackground = forwardRef(({ interactive, onNodeClick, graphData, theme
 
     const chart = echarts.init(chartRef.current, 'dark');
     chartInstance.current = chart;
+    let pinchStartDistance = null;
+    let pinchStartZoom = null;
 
     // Preparar categorías para ECharts
     const echartsCategories = categories.map((name, index) => ({
       name,
       itemStyle: { color: categoryColors[index] },
     }));
+
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const legendSizes = isMobile
+      ? {
+          left: 10,
+          top: 148,
+          fontSize: 12,
+          itemGap: 12,
+          itemWidth: 42,
+          itemHeight: 22,
+        }
+      : {
+          left: 20,
+          top: 108,
+          fontSize: 20,
+          itemGap: 30,
+          itemWidth: 52,
+          itemHeight: 26,
+        };
 
     // Procesar nodos con tamaños escalados
     const processedNodes = nodes.map((node, index) => ({
@@ -176,16 +197,16 @@ const GraphBackground = forwardRef(({ interactive, onNodeClick, graphData, theme
               },
             })),
             orient: 'vertical',
-            left: 20,
-            top: 80,
+            left: legendSizes.left,
+            top: legendSizes.top,
             textStyle: {
               color: isLightTheme ? '#1a1a1a' : '#fff',
               fontFamily: 'Inter, sans-serif',
-              fontSize: 20,
+              fontSize: legendSizes.fontSize,
             },
-            itemGap: 30,
-            itemWidth: 52,
-            itemHeight: 26,
+            itemGap: legendSizes.itemGap,
+            itemWidth: legendSizes.itemWidth,
+            itemHeight: legendSizes.itemHeight,
             inactiveColor: isLightTheme ? '#bbb' : '#555',
             inactiveBorderColor: isLightTheme ? '#ccc' : '#666',
             inactiveBorderWidth: 2,
@@ -292,6 +313,52 @@ const GraphBackground = forwardRef(({ interactive, onNodeClick, graphData, theme
 
     chart.setOption(option);
 
+    // Pinch-to-zoom manual para móvil, evitando que el navegador capture el gesto.
+    const getTouchDistance = (touches) => {
+      if (touches.length < 2) return 0;
+      const dx = touches[0].clientX - touches[1].clientX;
+      const dy = touches[0].clientY - touches[1].clientY;
+      return Math.hypot(dx, dy);
+    };
+
+    const handleTouchStart = (event) => {
+      if (event.touches.length !== 2 || !chartInstance.current) return;
+      pinchStartDistance = getTouchDistance(event.touches);
+      const currentOption = chartInstance.current.getOption();
+      pinchStartZoom = currentOption?.series?.[0]?.zoom || 1;
+    };
+
+    const handleTouchMove = (event) => {
+      if (
+        event.touches.length !== 2
+        || !chartInstance.current
+        || !pinchStartDistance
+        || !pinchStartZoom
+      ) {
+        return;
+      }
+
+      event.preventDefault();
+      const distance = getTouchDistance(event.touches);
+      if (!distance) return;
+
+      const nextZoom = Math.max(0.3, Math.min(4, pinchStartZoom * (distance / pinchStartDistance)));
+      chartInstance.current.setOption({
+        series: [{ zoom: nextZoom }],
+      });
+    };
+
+    const handleTouchEnd = () => {
+      pinchStartDistance = null;
+      pinchStartZoom = null;
+    };
+
+    const chartDom = chart.getDom();
+    chartDom.addEventListener('touchstart', handleTouchStart, { passive: true });
+    chartDom.addEventListener('touchmove', handleTouchMove, { passive: false });
+    chartDom.addEventListener('touchend', handleTouchEnd, { passive: true });
+    chartDom.addEventListener('touchcancel', handleTouchEnd, { passive: true });
+
     // Evento de cambio en leyenda - actualizar iconos de switch
     chart.on('legendselectchanged', (params) => {
       const newLegendData = echartsCategories.map((c, index) => ({
@@ -345,6 +412,10 @@ const GraphBackground = forwardRef(({ interactive, onNodeClick, graphData, theme
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      chartDom.removeEventListener('touchstart', handleTouchStart);
+      chartDom.removeEventListener('touchmove', handleTouchMove);
+      chartDom.removeEventListener('touchend', handleTouchEnd);
+      chartDom.removeEventListener('touchcancel', handleTouchEnd);
       chart.off('click');
       chart.off('legendselectchanged');
       chart.dispose();
@@ -362,6 +433,7 @@ const GraphBackground = forwardRef(({ interactive, onNodeClick, graphData, theme
         height: '100vh',
         zIndex: 0,
         pointerEvents: interactive ? 'auto' : 'none',
+        touchAction: interactive ? 'none' : 'auto',
       }}
     />
   );
