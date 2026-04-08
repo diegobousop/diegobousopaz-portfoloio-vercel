@@ -134,6 +134,9 @@ const GraphBackground = forwardRef(({ interactive, onNodeClick, graphData, theme
     chartInstance.current = chart;
     let pinchStartDistance = null;
     let pinchStartZoom = null;
+    let touchStartPoint = null;
+    let didTouchDrag = false;
+    let suppressClickUntil = 0;
 
     // Preparar categorías para ECharts
     const echartsCategories = categories.map((name, index) => ({
@@ -260,7 +263,7 @@ const GraphBackground = forwardRef(({ interactive, onNodeClick, graphData, theme
           links: processedEdges,
           categories: echartsCategories,
           roam: true,
-          draggable: true,
+          draggable: !isMobile,
           label: {
             show: true,
             position: 'right',
@@ -322,13 +325,39 @@ const GraphBackground = forwardRef(({ interactive, onNodeClick, graphData, theme
     };
 
     const handleTouchStart = (event) => {
-      if (event.touches.length !== 2 || !chartInstance.current) return;
-      pinchStartDistance = getTouchDistance(event.touches);
-      const currentOption = chartInstance.current.getOption();
-      pinchStartZoom = currentOption?.series?.[0]?.zoom || 1;
+      if (!chartInstance.current) return;
+
+      if (event.touches.length === 2) {
+        pinchStartDistance = getTouchDistance(event.touches);
+        const currentOption = chartInstance.current.getOption();
+        pinchStartZoom = currentOption?.series?.[0]?.zoom || 1;
+        didTouchDrag = true;
+        touchStartPoint = null;
+        return;
+      }
+
+      if (event.touches.length === 1) {
+        const touch = event.touches[0];
+        touchStartPoint = { x: touch.clientX, y: touch.clientY };
+        didTouchDrag = false;
+        pinchStartDistance = null;
+        pinchStartZoom = null;
+      }
     };
 
     const handleTouchMove = (event) => {
+      if (event.touches.length === 1 && touchStartPoint) {
+        const touch = event.touches[0];
+        const deltaX = touch.clientX - touchStartPoint.x;
+        const deltaY = touch.clientY - touchStartPoint.y;
+
+        if (Math.hypot(deltaX, deltaY) > 8) {
+          didTouchDrag = true;
+          suppressClickUntil = Date.now() + 250;
+        }
+        return;
+      }
+
       if (
         event.touches.length !== 2
         || !chartInstance.current
@@ -338,6 +367,8 @@ const GraphBackground = forwardRef(({ interactive, onNodeClick, graphData, theme
         return;
       }
 
+      didTouchDrag = true;
+      suppressClickUntil = Date.now() + 250;
       event.preventDefault();
       const distance = getTouchDistance(event.touches);
       if (!distance) return;
@@ -348,9 +379,19 @@ const GraphBackground = forwardRef(({ interactive, onNodeClick, graphData, theme
       });
     };
 
-    const handleTouchEnd = () => {
-      pinchStartDistance = null;
-      pinchStartZoom = null;
+    const handleTouchEnd = (event) => {
+      if (event.touches.length < 2) {
+        pinchStartDistance = null;
+        pinchStartZoom = null;
+      }
+
+      if (event.touches.length === 0) {
+        touchStartPoint = null;
+        if (didTouchDrag) {
+          suppressClickUntil = Date.now() + 250;
+        }
+        didTouchDrag = false;
+      }
     };
 
     const chartDom = chart.getDom();
@@ -380,6 +421,10 @@ const GraphBackground = forwardRef(({ interactive, onNodeClick, graphData, theme
 
     // Evento de click en nodos - mantener selección
     chart.on('click', (params) => {
+      if (isMobile && Date.now() < suppressClickUntil) {
+        return;
+      }
+
       if (params.dataType === 'node') {
         const nodeData = params.data;
         

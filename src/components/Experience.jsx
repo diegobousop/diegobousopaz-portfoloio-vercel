@@ -3,7 +3,7 @@ import React from 'react'
 const Experience = () => {
   return (
     <div className='flex flex-col mb-14 max-w-[80%] lg:max-w-[100%] w-full'>
-      <h2 className="text-4xl font-bold text-gray-400 text-center mt-20 mb-5">Experiencia</h2>
+      <h2 className="text-2xl sm:text-4xl font-bold text-gray-400 text-center mt-20 mb-5">Experiencia</h2>
 
       {/* Badge centrado */}
       <div className="flex justify-center mb-4">
@@ -16,13 +16,13 @@ const Experience = () => {
 
         <div className="flex flex-row justify-start items-center">
           <img src="/icons/nunegal.png" alt="Empresa" className="w-16 h-auto mr-3 rounded-2xl" />
-          <h1 className="text-2xl font-bold text-gray-400">- Desarrollador Software</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-400">- Desarrollador Software</h1>
         </div>
 
-        <h1 className="text-l font-regular text-gray-500 mt-2 mb-2">Septiembre 2024 - Noviembre 2024</h1>
+        <h1 className="text-sm sm:text-base font-regular text-gray-500 mt-2 mb-2">Septiembre 2024 - Noviembre 2024</h1>
           
         <div>
-          <ul className="list-disc list-inside mt-5 ml-4 text-gray-400 text-base">
+          <ul className="list-disc list-inside mt-5 ml-4 text-gray-400 text-sm sm:text-base">
             <li>Expandí mis conocimientos en <span className="text-yellow-500 font-bold">Spring Boot</span>.</li>
             <li>Usé <span className="text-yellow-500 font-bold">Thymeleaf</span>, <span className="text-yellow-500 font-bold">Javascript</span> y otras herramientas de frontend.</li>
             <li>Creación de un <span className="text-yellow-500 font-bold">aplicación web</span> en solitario para ventas online.</li>
