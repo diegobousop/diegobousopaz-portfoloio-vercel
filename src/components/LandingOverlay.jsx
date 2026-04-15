@@ -277,25 +277,7 @@ const LandingOverlay = ({
         </button>
       </div>
 
-      {/* Indicador de portfolio actual */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2">
-        {portfolios.map((portfolio, idx) => (
-          <button
-            key={idx}
-            onClick={(e) => {
-              e.stopPropagation();
-              setCurrentIndex(idx);
-            }}
-            className={`h-2 rounded-full transition-all ${
-              idx === currentIndex
-                ? 'w-6'
-                : 'w-2 bg-white/30 hover:bg-white/50'
-            }`}
-            style={idx === currentIndex ? { backgroundColor: portfolio.themeColor } : {}}
-            aria-label={`Ir a portfolio ${idx + 1}`}
-          />
-        ))}
-      </div>
+      
 
       {/* Sección hero del landing */}
       <div
